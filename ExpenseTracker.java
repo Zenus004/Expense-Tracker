@@ -61,6 +61,13 @@ public class ExpenseTracker extends JFrame {
         setBudgetButton.addActionListener(e -> setBudget());
         gridPanel.add(setBudgetButton, gbc);
 
+        //Clear button
+        gbc.gridx = 3;
+        JButton clearButton = new JButton("Clear All");
+        setButtonStyle(clearButton);
+        clearButton.addActionListener(e -> clearAll());
+        gridPanel.add(clearButton, gbc);
+
         // Expense input
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -153,6 +160,23 @@ public class ExpenseTracker extends JFrame {
         } catch (NumberFormatException e) {
             showAlert("Invalid input for budget.");
         }
+    }
+
+    private void clearAll() {
+        totalAmount = 0;
+        totalExpenditure = 0;
+
+        totalAmountField.setText("");
+        productTitleField.setText("");
+        userAmountField.setText("");
+
+        amountLabel.setText("₹0.00");
+        expenditureLabel.setText("₹0.00");
+        balanceLabel.setText("₹0.00");
+
+        listContainer.removeAll();
+        listContainer.revalidate();
+        listContainer.repaint();
     }
 
     private void checkAmount() {
